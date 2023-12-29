@@ -1,5 +1,6 @@
 package br.com.treinaweb.hyperprof.api.professores.controllers;
 
+import br.com.treinaweb.hyperprof.api.commons.routes.ApiRoutes;
 import br.com.treinaweb.hyperprof.api.professores.dtos.ProfessorResponse;
 import br.com.treinaweb.hyperprof.api.professores.services.ProfessorService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,7 @@ public class ProfessorRestController
 
     private final ProfessorService professorService;
 
-    @GetMapping("/api/professores")
+    @GetMapping(ApiRoutes.BUSCAR_PROFESSORES)
     public List<ProfessorResponse> buscarProfessores (
         @RequestParam(name = "q", required = false, defaultValue = "")
         String descricao
