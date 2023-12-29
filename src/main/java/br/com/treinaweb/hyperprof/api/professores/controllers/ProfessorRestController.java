@@ -16,7 +16,7 @@ public class ProfessorRestController
 
     private final ProfessorService professorService;
 
-    @GetMapping("api/professores")
+    @GetMapping("/api/professores")
     public List<ProfessorResponse> buscarProfessores (
         @RequestParam(name = "q", required = false, defaultValue = "")
         String descricao
