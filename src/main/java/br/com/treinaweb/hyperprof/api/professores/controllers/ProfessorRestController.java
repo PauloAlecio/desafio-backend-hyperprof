@@ -5,6 +5,7 @@ import br.com.treinaweb.hyperprof.api.professores.dtos.ProfessorResponse;
 import br.com.treinaweb.hyperprof.api.professores.services.ProfessorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +24,11 @@ public class ProfessorRestController
         String descricao
     ) {
         return professorService.buscarProfessores(descricao);
+    }
+    @GetMapping(ApiRoutes.BUSCAR_PROFESSOR_POR_ID)
+    public ProfessorResponse buscarProfessorPorId(@PathVariable
+    Long professorId) {
+        return professorService.buscarProfessorPorId(professorId);
     }
 
 }
