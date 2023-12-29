@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Table(name = "professores")
 @ToString(onlyExplicitlyIncluded = true)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
-public class Professor
+public class Professor extends Auditable
 {
 
     @Id
@@ -47,12 +47,5 @@ public class Professor
     @Column(name = "password")
     private String password;
 
-    @CreatedDate
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-
-    @LastModifiedDate
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
 
 }
