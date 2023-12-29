@@ -7,4 +7,5 @@ import java.util.List;
 public interface ProfessorService
 {
     List<ProfessorResponse> buscarProfessores(String descricao);
+    ProfessorResponse buscarProfessorPorId(Long professorId);
 }
