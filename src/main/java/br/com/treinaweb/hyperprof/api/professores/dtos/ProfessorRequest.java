@@ -1,5 +1,6 @@
 package br.com.treinaweb.hyperprof.api.professores.dtos;
 
+import br.com.treinaweb.hyperprof.api.professores.validators.ProfessorEmailIsUnique;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import jakarta.validation.constraints.*;
@@ -25,6 +26,7 @@ public class ProfessorRequest {
     @Email
     @NotNull
     @NotEmpty
+    @ProfessorEmailIsUnique
     @Size(min = 3, max = 255)
     private String email;
 
