@@ -6,6 +6,7 @@ import br.com.treinaweb.hyperprof.api.professores.mappers.ProfessorMapper;
 import br.com.treinaweb.hyperprof.core.exceptions.ProfessorNotFoundException;
 import br.com.treinaweb.hyperprof.core.repositories.ProfessorRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProfessorServiceImpl implements ProfessorService
 {
+    private final PasswordEncoder passwordEncoder;
     private final ProfessorMapper professorMapper;
     private final ProfessorRepository professorRepository;
     @Override
@@ -35,7 +37,7 @@ public class ProfessorServiceImpl implements ProfessorService
     public ProfessorResponse cadastrarProfessor(
         ProfessorRequest professorRequest) {
         var professorParaCadastrar = professorMapper.toProfessor(professorRequest);
-        professorParaCadastrar.setPassword(professorParaCadastrar.getPassword());
+        professorParaCadastrar.setPassword(passwordEncoder.encode(professorParaCadastrar.getPassword()));
         var professorCadastrado = professorRepository.save(professorParaCadastrar);
         return professorMapper.toProfessorResponse(professorCadastrado);
     }
