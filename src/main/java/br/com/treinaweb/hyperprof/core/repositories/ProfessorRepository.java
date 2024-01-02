@@ -9,5 +9,7 @@ import java.util.Optional;
 public interface ProfessorRepository extends JpaRepository<Professor,Long>
 {
     List<Professor> findByDescricaoContaining(String descricao);
+
+    Optional<Professor> findByEmail(String email);
     boolean existsByEmail(String email);
 }
