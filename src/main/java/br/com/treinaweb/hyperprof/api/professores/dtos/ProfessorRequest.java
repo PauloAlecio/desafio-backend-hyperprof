@@ -1,6 +1,7 @@
 package br.com.treinaweb.hyperprof.api.professores.dtos;
 
 import br.com.treinaweb.hyperprof.api.professores.validators.ProfessorEmailIsUnique;
+import br.com.treinaweb.hyperprof.core.validators.FieldsAreEquals;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import jakarta.validation.constraints.*;
@@ -16,6 +17,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+@FieldsAreEquals(field = "password", fieldMatch = "passwordConfirmation")
 public class ProfessorRequest {
 
     @NotNull
