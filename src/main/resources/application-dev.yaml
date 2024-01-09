@@ -10,4 +10,15 @@ spring:
     properties:
       hibernate:
         "[format_sql]": true
-
+br:
+  com:
+    treinaweb:
+      hyperprof:
+        core:
+          services:
+            token:
+              jjwt:
+                accessTokenSigingKey: *:jC0$6#fQ0V>jqVb?_|g=,EgeR]<xsP[@;!Z.PC,/|.(vK/847`%*|)lk`^%<F
+                accessTokenExpirationInSeconds: 30
+                refreshTokenSigingKey: He*&VJ&6t|1{j;pHXY_$M^s?q[lDbwiT%qsS#)6A9K'Z{r*Dz{4D"|ZKlj9L!u&
+                refreshTokenExpirationInSeconds: 60
