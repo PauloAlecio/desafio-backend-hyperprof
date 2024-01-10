@@ -1,5 +1,6 @@
 package br.com.treinaweb.hyperprof.config;
 
+import br.com.treinaweb.hyperprof.api.commons.filters.AccessTokenRequestFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final AuthenticationEntryPoint authenticationEntryPoint;
-
+    private final AccessTokenRequestFilter accessTokenRequestFilter;
     @Bean
     public SecurityFilterChain securityFilterChain(
         HttpSecurity http) throws Exception {
@@ -30,6 +31,7 @@ public class SecurityConfig {
             )
             .sessionManagement(customizer -> customizer
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .addFilterBefore(accessTokenRequestFilter, UsernamePasswordAuthenticationFilter.class)
             .exceptionHandling(customizer -> customizer
                 .authenticationEntryPoint(authenticationEntryPoint)
             );
