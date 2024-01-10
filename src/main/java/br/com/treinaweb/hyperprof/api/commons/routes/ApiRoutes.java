@@ -15,7 +15,7 @@ public class ApiRoutes {
 
     public static final String PROFESSOR_LOGADO = API + ME;
 
-
+    public static final String REFRESH = API + AUTH + "/refresh";
 
     public static final String LOGIN = API + AUTH + "/login";
 
