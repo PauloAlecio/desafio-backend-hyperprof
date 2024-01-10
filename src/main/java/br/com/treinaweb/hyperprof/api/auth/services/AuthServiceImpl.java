@@ -2,6 +2,8 @@ package br.com.treinaweb.hyperprof.api.auth.services;
 
 import br.com.treinaweb.hyperprof.api.auth.dtos.LoginRequest;
 import br.com.treinaweb.hyperprof.api.auth.dtos.LoginResponse;
+import br.com.treinaweb.hyperprof.api.auth.dtos.RefreshRequest;
+import br.com.treinaweb.hyperprof.core.exceptions.ProfessorNotFoundException;
 import br.com.treinaweb.hyperprof.core.models.AuthenticatedUser;
 import br.com.treinaweb.hyperprof.core.repositories.ProfessorRepository;
 import br.com.treinaweb.hyperprof.core.services.token.TokenService;
@@ -30,6 +32,20 @@ public class AuthServiceImpl implements AuthService
   return LoginResponse.builder()
       .token(tokenService.gerarAccessToken(professor.getEmail()))
       .refreshToken(tokenService.gerarRefreshToken(professor.getEmail()))
+      .build();
+ }
+
+
+ @Override
+ public LoginResponse refresh( RefreshRequest refreshRequest) {
+  var subject = tokenService.getSubjectDoRefreshToken(refreshRequest.getRefreshToken());
+  if (!professorRepository.existsByEmail(subject)) {
+   throw new ProfessorNotFoundException();
+  }
+  tokenService.invalidarTokens(refreshRequest.getRefreshToken());
+  return LoginResponse.builder()
+      .token(tokenService.gerarAccessToken(subject))
+      .refreshToken(tokenService.gerarRefreshToken(subject))
       .build();
  }
 
