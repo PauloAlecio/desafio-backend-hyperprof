@@ -19,6 +19,6 @@ br:
             token:
               jjwt:
                 accessTokenSigingKey: 2kYuOv~<F;`H7uMGq`6Kq[t`I&d{lcXB#HKTxWb}~v7_U.>BSQ7:qGX_&oB:1n%
-                accessTokenExpirationInSeconds: 30
+                accessTokenExpirationInSeconds: 60
                 refreshTokenSigingKey: He*&VJ&6t|1{j;pHXY_$M^s?q[lDbwiT%qsS#)6A9K'Z{r*Dz{4D"|ZKlj9L!u&
-                refreshTokenExpirationInSeconds: 60
+                refreshTokenExpirationInSeconds: 120
