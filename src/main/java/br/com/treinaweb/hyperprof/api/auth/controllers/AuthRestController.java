@@ -2,6 +2,7 @@ package br.com.treinaweb.hyperprof.api.auth.controllers;
 
 import br.com.treinaweb.hyperprof.api.auth.dtos.LoginRequest;
 import br.com.treinaweb.hyperprof.api.auth.dtos.LoginResponse;
+import br.com.treinaweb.hyperprof.api.auth.dtos.RefreshRequest;
 import br.com.treinaweb.hyperprof.api.auth.services.AuthService;
 import br.com.treinaweb.hyperprof.api.commons.routes.ApiRoutes;
 import jakarta.validation.Valid;
@@ -21,5 +22,10 @@ public class AuthRestController {
     @Valid
     LoginRequest loginRequest) {
         return authService.login(loginRequest);
+    }
+
+    @PostMapping(ApiRoutes.REFRESH)
+    public LoginResponse refresh(@RequestBody @Valid RefreshRequest refreshRequest) {
+        return authService.refresh(refreshRequest);
     }
 }
