@@ -11,4 +11,6 @@ public interface ProfessorService
     ProfessorResponse buscarProfessorPorId(Long professorId);
 
     ProfessorResponse cadastrarProfessor( ProfessorRequest professorRequest);
+
+    ProfessorResponse atualizarProfessorLogado(ProfessorRequest professorRequest);
 }
