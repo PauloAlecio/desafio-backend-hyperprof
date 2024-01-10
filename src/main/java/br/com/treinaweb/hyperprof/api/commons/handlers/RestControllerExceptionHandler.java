@@ -3,6 +3,7 @@ package br.com.treinaweb.hyperprof.api.commons.handlers;
 import br.com.treinaweb.hyperprof.api.commons.dtos.ErrorResponse;
 import br.com.treinaweb.hyperprof.api.commons.dtos.ValidationErrorResponse;
 import br.com.treinaweb.hyperprof.core.exceptions.ModelNotFoundException;
+import br.com.treinaweb.hyperprof.core.services.token.TokenServiceException;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -52,6 +53,21 @@ public class RestControllerExceptionHandler extends
         WebRequest request
     ) {
         return handleBindException(ex, headers, statusCode, request);
+    }
+
+    @ExceptionHandler(TokenServiceException.class)
+    public ResponseEntity<ErrorResponse> handleTokenServiceException(
+        TokenServiceException exception, WebRequest request
+    ) {
+        var status = HttpStatus.UNAUTHORIZED;
+        var body = ErrorResponse.builder()
+            .status(status.value())
+            .error(status.getReasonPhrase())
+            .message(exception.getLocalizedMessage())
+            .cause(exception.getClass().getSimpleName())
+            .timestamp(LocalDateTime.now())
+            .build();
+        return new ResponseEntity<ErrorResponse>(body, status);
     }
 
     @Override
