@@ -30,4 +30,6 @@ public class ApiRoutes {
 
     public static final String CADASTRAR_ALUNO = API + PROFESSORES + "/{professorId}" + ALUNOS;
 
+    public static final String ATUALIZAR_PROFESSOR_LOGADO = API + PROFESSORES;
+
 }
